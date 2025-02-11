@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Cloner le code') {
             steps {
-                git branch: 'main', url: 'https://github.com/ouassim16wass/mini-projet.git'
+                git branch: 'main', url: 'https://github.com/yassindoghriii/mini_projet-mlops.git'
             }
         }
 
