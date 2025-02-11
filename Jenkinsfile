@@ -27,29 +27,25 @@ pipeline {
 
         stage('Installer les dépendances') {
             steps {
-                sh 'chcp 65001' // Définit l'encodage en UTF-8
-                sh 'python -m pip install --no-cache-dir -r requirements.txt || exit 1'
+                sh 'python3 -m pip install --no-cache-dir -r requirements.txt || exit 1'
             }
         }
 
-        stage('Prétraitement des données avec Docker') {
+        stage('Prétraitement des données') {
             steps {
-                sh 'chcp 65001' // Définit l'encodage en UTF-8
-                sh 'python preprocessing.py'
+                sh 'python3 preprocessing.py'
             }
         }
 
         stage('Entraînement du modèle') {
             steps {
-                sh 'chcp 65001' // Définit l'encodage en UTF-8
-                sh 'python train.py'
+                sh 'python3 train.py'
             }
         }
 
         stage('Évaluation du modèle') {
             steps {
-                sh 'chcp 65001' // Définit l'encodage en UTF-8
-                sh 'python evaluate.py'
+                sh 'python3 evaluate.py'
             }
         }
 
