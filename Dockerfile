@@ -2,15 +2,24 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Installer PostgreSQL et ses dépendances
-RUN apt-get update && apt-get install -y libpq-dev gcc python3-dev postgresql-client
+# Installer PostgreSQL et ses dépendances système nécessaires pour psycopg2
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    python3-dev \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copier et installer les dépendances Python
+# Copier les fichiers de dépendances AVANT le reste du projet (meilleure gestion du cache)
 COPY requirements.txt requirements.txt
-RUN pip install psycopg2
+
+# Installer `psycopg2-binary` séparément AVANT les autres dépendances
+RUN pip install --no-cache-dir psycopg2-binary
+
+# Installer le reste des dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copier le reste du projet
+# Copier le reste du projet après installation des dépendances
 COPY . .
 
 EXPOSE 5000
