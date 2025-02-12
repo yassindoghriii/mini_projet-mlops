@@ -1,19 +1,17 @@
-# Utiliser une image Python légère
 FROM python:3.9-slim
 
 WORKDIR /app
 
-# Copier le fichier requirements.txt et installer les dépendances
+# Installer les dépendances système pour PostgreSQL
+RUN apt-get update && apt-get install -y libpq-dev gcc python3-dev
+
+# Copier et installer les dépendances Python
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copier tous les fichiers du projet
+# Copier les fichiers du projet
 COPY . .
 
-# Exécuter l'entraînement du modèle avant de lancer l'API Flask
-RUN python train.py
-
-# Exposer le port Flask
 EXPOSE 5000
 
 # Lancer l'API Flask avec Gunicorn
