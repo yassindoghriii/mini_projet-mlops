@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-# Installer PostgreSQL et ses dépendances système pour psycopg2
+# Installer PostgreSQL et ses dépendances
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     gcc \
@@ -10,13 +10,13 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Définir le chemin de `pg_config` pour éviter les erreurs
+# 🔹 Définir le chemin de `pg_config` pour éviter les erreurs 🔹
 ENV PATH="/usr/lib/postgresql/15/bin:$PATH"
 
-# Copier les fichiers requirements.txt
+# Copier requirements.txt
 COPY requirements.txt requirements.txt
 
-# Installer `psycopg2-binary` en premier pour éviter les conflits
+# Installer `psycopg2-binary` en premier
 RUN pip install --no-cache-dir psycopg2-binary
 
 # Installer les autres dépendances
@@ -28,4 +28,4 @@ COPY . .
 EXPOSE 5000
 
 # Lancer Flask avec Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "-b
