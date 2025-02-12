@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DATA_PATH = ""  // Les fichiers sont à la racine, donc pas de sous-dossier
+        DATA_PATH = ""  // Les fichiers sont à la racine
         MODEL_PATH = "models/"
-        DOCKER_IMAGE_NAME = "mini-projet-model"  // Nom de l'image Docker
-        DOCKER_REGISTRY = "yassindoghri"  // Ton nom d'utilisateur Docker Hub
+        DOCKER_IMAGE_NAME = "mini-projet-model"
+        DOCKER_REGISTRY = "yassindoghri"  
     }
 
     stages {
@@ -19,9 +19,9 @@ pipeline {
             steps {
                 script {
                     if (fileExists('train.csv') && fileExists('test.csv')) {
-                        echo "✔️ Les fichiers de données existent, traitement lancé."
+                        echo "✔️ Les fichiers de données existent."
                     } else {
-                        error "❌ Les fichiers de données train.csv et test.csv sont manquants."
+                        error "❌ Les fichiers train.csv et test.csv sont manquants."
                     }
                 }
             }
@@ -52,7 +52,7 @@ pipeline {
             }
         }
 
-        stage('Construire l\'image Docker avec le modèle') {
+        stage('Construire l\'image Docker avec l\'API Flask') {
             steps {
                 sh 'docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest .'
             }
@@ -70,6 +70,12 @@ pipeline {
         stage('Stockage des artefacts') {
             steps {
                 archiveArtifacts artifacts: 'rf_model.pkl, dt_model.pkl, ann_model.pkl', fingerprint: true
+            }
+        }
+
+        stage('Déployer l\'API Flask avec Docker') {
+            steps {
+                sh 'docker run -d -p 5000:5000 --name flask_api $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest'
             }
         }
     }
