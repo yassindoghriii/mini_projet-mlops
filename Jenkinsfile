@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Cloner le code') {
             steps {
-                git branch: 'main', url: 'https://github.com/ouassim16wass/mini-projet.git'
+                git branch: 'main', url: 'https://github.com/yassindoghriii/mini_projet-mlops.git'
             }
         }
 
@@ -73,9 +73,15 @@ pipeline {
             }
         }
 
-        stage('Déployer l\'API Flask avec Docker') {
+            stage('Construire et Déployer avec Docker Compose') {
             steps {
-                sh 'docker run -d -p 5000:5000 --name flask_api $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:latest'
+                sh 'docker-compose up --build -d'
+            }
+        }
+
+        stage('Vérifier les Conteneurs') {
+            steps {
+                sh 'docker ps'
             }
         }
     }
