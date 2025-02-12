@@ -1,9 +1,8 @@
-# Utiliser une image Python légère
 FROM python:3.9-slim
 
 WORKDIR /app
 
-# Installer les dépendances système nécessaires
+# Installer PostgreSQL et ses dépendances système pour psycopg2
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     gcc \
@@ -11,19 +10,21 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Copier les fichiers de dépendances avant le reste du projet
+# Définir le chemin de `pg_config` pour éviter les erreurs
+ENV PATH="/usr/lib/postgresql/15/bin:$PATH"
+
+# Copier les fichiers requirements.txt
 COPY requirements.txt requirements.txt
 
-# Installation de `psycopg2-binary` en premier pour éviter les conflits
+# Installer `psycopg2-binary` en premier pour éviter les conflits
 RUN pip install --no-cache-dir psycopg2-binary
 
-# Installer le reste des dépendances
+# Installer les autres dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copier le reste du projet après installation des dépendances
+# Copier le reste du projet
 COPY . .
 
-# Exposer le port Flask
 EXPOSE 5000
 
 # Lancer Flask avec Gunicorn
