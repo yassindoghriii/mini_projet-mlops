@@ -1,13 +1,26 @@
+# Bibliothèques de base pour la manipulation des données
 pandas
 numpy
 scipy
+
+# Bibliothèques pour le Machine Learning et le Deep Learning
 scikit-learn
-seaborn
-matplotlib
 imblearn
 joblib
-jupyter
 tensorflow
 keras
+
+# Bibliothèques pour la visualisation des données
+seaborn
+matplotlib
+
+# Bibliothèques pour le développement et le déploiement web
 flask
 gunicorn
+
+# Bibliothèques pour la gestion des bases de données SQL
+flask-sqlalchemy
+psycopg2-binary  # Client PostgreSQL pour Python
+
+# Outils de développement
+jupyter
