@@ -11,5 +11,5 @@ tensorflow
 keras
 flask
 gunicorn
+psycopg2
 flask-sqlalchemy
-psycopg2-binary
