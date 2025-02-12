@@ -1,26 +1,26 @@
-# Bibliothèques de base pour la manipulation des données
+# Manipulation des données
 pandas
 numpy
 scipy
 
-# Bibliothèques pour le Machine Learning et le Deep Learning
+# Machine Learning & Deep Learning
 scikit-learn
 imblearn
 joblib
 tensorflow
 keras
 
-# Bibliothèques pour la visualisation des données
+# Visualisation
 seaborn
 matplotlib
 
-# Bibliothèques pour le développement et le déploiement web
+# API Web & Serveur
 flask
 gunicorn
 
-# Bibliothèques pour la gestion des bases de données SQL
+# Base de données (SQLAlchemy + PostgreSQL)
 flask-sqlalchemy
-psycopg2-binary  # Client PostgreSQL pour Python
+psycopg2-binary  # Version pré-compilée pour éviter l'erreur pg_config
 
 # Outils de développement
 jupyter
