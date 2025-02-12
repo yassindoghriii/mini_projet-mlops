@@ -1,25 +1,14 @@
-# Librairies de manipulation des données
-pandas==1.5.3
-numpy==1.24.3
-scipy==1.10.1
-scikit-learn==1.2.2
-seaborn==0.12.2
-matplotlib==3.7.1
-
-# Librairies pour le traitement des modèles et le machine learning
-imblearn==0.0
-joblib==1.2.0
-tensorflow==2.11.0
-keras==2.11.0
-
-# Librairies pour l'API Flask et le serveur web
-flask==2.2.5
-gunicorn==20.1.0
-
-# Librairies pour l'orchestration et la gestion des bases de données
-flask-sqlalchemy==3.0.2
-psycopg2-binary==2.9.6
-
-# Librairies pour le développement et le Jupyter Notebook
-jupyter==1.0.0
-ipykernel==6.21.3
+pandas
+numpy
+scipy
+scikit-learn
+seaborn
+matplotlib
+imblearn
+joblib
+jupyter
+tensorflow
+keras
+flask
+gunicorn
+flask-sqlalchemy
