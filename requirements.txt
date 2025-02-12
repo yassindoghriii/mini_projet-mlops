@@ -1,26 +1,25 @@
-# Manipulation des données
-pandas
-numpy
-scipy
+# Librairies de manipulation des données
+pandas==1.5.3
+numpy==1.24.3
+scipy==1.10.1
+scikit-learn==1.2.2
+seaborn==0.12.2
+matplotlib==3.7.1
 
-# Machine Learning & Deep Learning
-scikit-learn
-imblearn
-joblib
-tensorflow
-keras
+# Librairies pour le traitement des modèles et le machine learning
+imblearn==0.0
+joblib==1.2.0
+tensorflow==2.11.0
+keras==2.11.0
 
-# Visualisation
-seaborn
-matplotlib
+# Librairies pour l'API Flask et le serveur web
+flask==2.2.5
+gunicorn==20.1.0
 
-# API Web & Serveur
-flask
-gunicorn
+# Librairies pour l'orchestration et la gestion des bases de données
+flask-sqlalchemy==3.0.2
+psycopg2-binary==2.9.6
 
-# Base de données (SQLAlchemy + PostgreSQL)
-flask-sqlalchemy
-psycopg2-binary  # Version pré-compilée pour éviter l'erreur pg_config
-
-# Outils de développement
-jupyter
+# Librairies pour le développement et le Jupyter Notebook
+jupyter==1.0.0
+ipykernel==6.21.3
