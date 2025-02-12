@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y libpq-dev gcc python3-dev postgresql-cl
 
 # Copier et installer les dépendances Python
 COPY requirements.txt requirements.txt
+RUN pip install psycopg2
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le reste du projet
